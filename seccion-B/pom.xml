@@ -20,6 +20,9 @@
     </dependencies>
 
     <build>
+        <!-- El código (.java y .aj) está en esta misma carpeta, no en src/main/java -->
+        <sourceDirectory>${project.basedir}</sourceDirectory>
+
         <plugins>
 
             <plugin>
@@ -47,6 +50,16 @@
                         </goals>
                     </execution>
                 </executions>
+            </plugin>
+
+            <!-- Permite ejecutar Main con aspectjrt en el classpath: mvn clean compile exec:java -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>3.5.1</version>
+                <configuration>
+                    <mainClass>Main</mainClass>
+                </configuration>
             </plugin>
         </plugins>
     </build>
